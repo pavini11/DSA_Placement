@@ -1,0 +1,24 @@
+// https://leetcode.com/problems/maximum-product-subarray/
+
+class Solution {
+public:
+    // void swap(int *a,int *b)
+    // {
+    //     int t=*a;
+    //     *a=*b;
+    //     *b=t;
+    // }
+    int maxProduct(vector<int>& nums) {
+        int ans=nums[0];
+        int mi=nums[0],ma=nums[0];
+        for(int i=1;i<nums.size();i++)
+        {
+            if(nums[i]<0)
+                swap(mi,ma);
+            ma=max(nums[i],ma*nums[i]);
+            mi=min(nums[i],mi*nums[i]);
+            ans=max(ma,ans);
+        }
+        return ans;
+    }
+};
